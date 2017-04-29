@@ -30,9 +30,15 @@ newtype Address = Address
   }
 
 fooAddr :: Address
-fooAddr = Address { street: "foo", city: "bar", state: "California" }
+fooAddr = Address { street: "foo", city: "Los Angeles", state: "California" }
+barAddr :: Address
+barAddr = Address { street: "foo", city: "San Francisco", state: "California" }
 fooEntry :: Entry
 fooEntry = Entry { firstName: "Peter", lastName: "Becich", address: fooAddr }
+
+livesInLA :: Address -> Boolean
+livesInLA (Address { city: "Los Angeles" }) = true
+livesInLA _ = false
 
 -- http://stackoverflow.com/questions/40508767/convert-an-array-to-a-list-in-purescript
 -- arrayToList :: forall a. Array a -> List a
