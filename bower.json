@@ -9,7 +9,15 @@
   "dependencies": {
     "purescript-prelude": "^3.0.0",
     "purescript-console": "^3.0.0",
-    "purescript-math": "^2.0.0"
+    "purescript-math": "^2.0.0",
+    "purescript-globals": "^3.0.0",
+    "purescript-control": "^3.0.0",
+    "purescript-maybe": "^3.0.0",
+    "purescript-lists": "^4.1.0",
+    "purescript-transformers": "^3.2.0",
+    "purescript-sets": "^3.0.0",
+    "purescript-identity": "^3.1.0",
+    "purescript-orders": "^3.0.0"
   },
   "devDependencies": {
     "purescript-psci-support": "^3.0.0"
