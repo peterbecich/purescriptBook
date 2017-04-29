@@ -3,7 +3,7 @@ dist: trusty
 sudo: required
 node_js: stable
 install:
-  - npm install -g bower pulp
+  - npm install -g bower purescript pulp
   - npm install
 script:
   - pulp build
