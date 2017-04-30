@@ -4,9 +4,12 @@ import Prelude
 
 import Control.Plus (empty)
 import Control.Monad.State
+import Control.Applicative
+import Control.Apply
 import Data.List
 import Data.Array as Arr
-import Data.Maybe (Maybe)
+import Data.Array ((..))
+import Data.Maybe
 import Data.Set as S
 import Data.Identity
 import Data.Ord
@@ -35,6 +38,9 @@ barAddr :: Address
 barAddr = Address { street: "foo", city: "San Francisco", state: "California" }
 fooEntry :: Entry
 fooEntry = Entry { firstName: "Peter", lastName: "Becich", address: fooAddr }
+
+address :: String -> String -> String -> Address
+address str cty stt = Address { street: str, city: cty, state: stt }
 
 livesInLA :: Address -> Boolean
 livesInLA (Address { city: "Los Angeles" }) = true
@@ -101,4 +107,28 @@ distinctPredicate x = do
   _ <- put $ S.insert x set
   pure $ not exsts
 
+
+somePlace :: Maybe Address
+somePlace = lift3 address (Just "123 Fake St.") (Just "The City") (Just "California")
+
+somePlace' :: Maybe Address
+somePlace' = address <$> (Just "123 Fake St.") <*> (Just "The City") <*> (Just "California")
+
+countThrows :: Int -> Array (Array Int)
+countThrows n = do
+  x <- 1 .. 6
+  y <- 1 .. 6
+  if x + y == n
+    then pure [x, y]
+    else empty
+
+safeDivide :: Int -> Int -> Maybe Int
+safeDivide _ 0 = Nothing
+safeDivide a b = Just (a / b)
+
+-- 100 / 5 / 2 / 2 == 5
+five = foldM safeDivide 100 (fromFoldable [5, 2, 2])
+
+-- 100 / 2 / 0 / 4
+notFive = foldM safeDivide 100 (fromFoldable [2, 0, 4])
 
