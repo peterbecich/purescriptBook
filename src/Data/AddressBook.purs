@@ -132,3 +132,4 @@ five = foldM safeDivide 100 (fromFoldable [5, 2, 2])
 -- 100 / 2 / 0 / 4
 notFive = foldM safeDivide 100 (fromFoldable [2, 0, 4])
 
+
