@@ -23,6 +23,7 @@ newtype Entry = Entry
   , address :: Address
   }
 
+
 derive instance ordEntry :: Ord Entry
 derive instance eqEntry :: Eq Entry
 
